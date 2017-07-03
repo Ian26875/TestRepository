@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MVC.Areas.Account.Models.ViewModels.AccountViewModel>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>@Html.DisplayNameFor(modelItem => modelItem.Number)</th>
+                    <th>@Html.DisplayNameFor(modelItem => modelItem.Category)</th>
+                    <th>@Html.DisplayNameFor(modelItem => modelItem.Date)</th>
+                    <th>@Html.DisplayNameFor(modelItem => modelItem.Amount)</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem=>item.Number)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+                </tr>           
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

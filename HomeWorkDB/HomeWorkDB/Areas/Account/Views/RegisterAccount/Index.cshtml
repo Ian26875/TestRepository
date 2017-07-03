@@ -1,0 +1,79 @@
+﻿@model HomeWorkDB.Areas.Account.Models.ViewModel.AccountInsertViewModel
+@{
+    ViewBag.Title = "記帳";
+}
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            var page = window.location.hash
+               ? window.location.hash.slice(1)
+                : 1;
+            fetchPage(page);
+        });
+
+        var fetchPage = function (page) {
+            var pagedPartialUrl = '@Url.Action("AccountLists", "RegisterAccount")';
+
+            $.get(pagedPartialUrl, { page: page }, function (data) {
+
+                window.location.hash = page;
+
+                $('#AccountList').html(data);
+
+                $('#AccountList .pagination li a').each(function (i, item) {
+                    var hyperLinkUrl = $(item).attr('href');
+                    if (typeof hyperLinkUrl !== 'undefined' && hyperLinkUrl !== false) {
+                        var pageNumber = $(item).attr('href').replace('/RegisterAccount?page=', '');
+                        $(item).attr('href', '#').click(function (event) {
+                            event.preventDefault();
+                            $(event.target).attr('href');
+                            fetchPage(pageNumber);
+                        });
+                    }
+                });
+            });
+        };
+    </script>
+    }
+<div class="container body-content">
+
+    <div class="well">
+        @using (Html.BeginForm(actionName: "Insert", controllerName: "RegisterAccount", method: FormMethod.Post, htmlAttributes: new { @class = "form-horizontal" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(item => item.Category, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                  @Html.EnumDropDownListFor(item=> item.Category, new { @class=""})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(item => item.Amount, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(item => item.Amount, new { @placeholder = "金額", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(item => item.Date, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(item => item.Date, new { @placeholder = "日期", @class = "form-control" ,type="date" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(item => item.Description, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(item => item.Description, new {@class= "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-8 col-sm-4">                    
+                    <button class="btn btn-default">送出</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div id="AccountList">
+    @Html.Action("AccountLists")
+        </div>
+    <hr>
+
+</div>
