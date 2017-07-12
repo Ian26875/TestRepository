@@ -26,12 +26,5 @@ namespace HomeWorkDB.Controllers
 
             return View();
         }
-
-        public ActionResult AccountBook()
-        {
-
-            return View();
-        }
-            
     }
 }
