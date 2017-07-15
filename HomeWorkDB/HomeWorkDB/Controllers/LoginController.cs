@@ -33,13 +33,12 @@ namespace HomeWorkDB.Controllers
             var result=service.CheckUserInform(viewModel.Account, viewModel.Password);
             if (!result)
             {
+                ModelState.AddModelError("Account", "查無資料");
                 return View(viewModel);
             }
-            else
-            {
-
-            }
+            
             return View();
         }
+      
     }
 }
