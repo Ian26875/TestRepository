@@ -17,7 +17,7 @@ namespace ClassLibrary
     public class EncryptionHelper
     {
         public delegate string EncodingString(string source);
-        public string Encryption(EncryptionType type,string source)
+        public string Encryption(EncryptionType encryptionType, string source)
         {
             Dictionary<EncryptionType, EncodingString> dictionary = new Dictionary<EncryptionType, EncodingString>()
             {
