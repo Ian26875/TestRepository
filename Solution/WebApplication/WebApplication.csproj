@@ -235,6 +235,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\MemberService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MemberChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\MemberLoginViewModel.cs" />
