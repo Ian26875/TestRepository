@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +24,12 @@ namespace WebApplication.Services
         /// <param name="newMember"></param>
         public void Register(Member newMember)
         {
-
+            var encodingHelper = new EncryptionHelper();
+            //使用SHA1加密密碼
+            newMember.Password = encodingHelper.Encryption(EncryptionType.SHA1, newMember.Password);
+            db.Member.Add(newMember);          
+            db.SaveChanges();
         }
+        
     }
 }

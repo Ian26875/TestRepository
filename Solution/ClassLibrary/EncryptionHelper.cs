@@ -1,15 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
-    public sealed class EncryptionHelper
+
+    public enum EncryptionType
+    {
+        MD5,
+        SHA1,
+        SHA384,
+        SHA512
+    }
+
+    public class EncryptionHelper
     {
         public delegate string EncodingString(string source);
+        public string Encryption(EncryptionType type,string source)
+        {
+            Dictionary<EncryptionType, EncodingString> dictionary = new Dictionary<EncryptionType, EncodingString>()
+            {
+                { EncryptionType.MD5,EncodingMD5},
+                { EncryptionType.SHA1,EncodingSHA1},
+                { EncryptionType.SHA384,EncodingSHA384},
+                { EncryptionType.SHA512,EncodingSHA512},
+
+            };
+            return dictionary[type].Invoke(source);
+        }
         /// <summary> 
         /// MD5加密字符串 
         /// </summary> 
