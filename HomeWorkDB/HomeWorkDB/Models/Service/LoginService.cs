@@ -9,7 +9,7 @@ namespace HomeWorkDB.Models.Service
     {
         public bool CheckUserInform(string account, string password)
         {
-            bool isCheck = false;
+            bool isCheck = true;
             return isCheck;
         }
     }

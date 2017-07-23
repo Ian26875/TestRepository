@@ -19,7 +19,7 @@ namespace HomeWorkDB.Attribute
 
             if (value is string)
             {
-                return Inputs.ToList().Exists(x => x.Contains(value.ToString()));
+                return Inputs.ToList().Exists(x =>!x.Contains(value.ToString()));
                 //輸入值是字串才判斷
                 //if (Inputs.Contains(value.ToString()))
                 //{

@@ -16,7 +16,8 @@ namespace MVC.Controllers
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            var cook = new HttpCookie() { };
+            Response.Cookies.Add(cook);
             return View();
         }
 
