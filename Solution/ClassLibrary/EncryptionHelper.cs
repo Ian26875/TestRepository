@@ -27,7 +27,7 @@ namespace ClassLibrary
                 { EncryptionType.SHA512,EncodingSHA512},
 
             };
-            return dictionary[type].Invoke(source);
+            return dictionary[encryptionType].Invoke(source);
         }
         /// <summary> 
         /// MD5加密字符串 
