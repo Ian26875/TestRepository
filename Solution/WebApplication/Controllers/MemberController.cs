@@ -61,6 +61,39 @@ namespace WebApplication.Controllers
                 return View(loginMember);
             }
 
-        }    
+        }
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            //判斷使用者是否已經登入驗證
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Register(MemberRegisterViewModel registerMember)
+        {
+            if (!ModelState.IsValid)
+            {
+                registerMember.CheckPassword = "";
+                registerMember.Password = "";
+                return View(registerMember);
+            }
+            else
+            {
+                registerMember.NewMember.Password = registerMember.Password;
+                registerMember.NewMember.AuthCode= mailService.GetValidateCode();
+                memberService.Register(registerMember.NewMember);
+                return RedirectToAction("RegisterResult");
+            }         
+        }
+        public ActionResult RegisterResult()
+        {
+            return View();
+        }
     }
 }
