@@ -3,10 +3,10 @@ using System.Linq;
 
 namespace HomeWorkDB.Attribute
 {
-    public sealed class BanWordAttribute : ValidationAttribute
+    public sealed class BanWordsAttribute : ValidationAttribute
     {
         private string[] Inputs { get; set; }
-        public BanWordAttribute(params string[] input)
+        public BanWordsAttribute(params string[] input)
         {
             Inputs = input;
         }
@@ -20,11 +20,6 @@ namespace HomeWorkDB.Attribute
             if (value is string)
             {
                 return Inputs.ToList().Exists(x =>!x.Contains(value.ToString()));
-                //輸入值是字串才判斷
-                //if (Inputs.Contains(value.ToString()))
-                //{
-                //    return false;
-                //}
             }
             return true;
         }

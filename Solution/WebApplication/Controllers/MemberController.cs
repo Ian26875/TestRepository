@@ -85,6 +85,7 @@ namespace WebApplication.Controllers
             }
             else
             {
+                
                 registerMember.NewMember.Password = registerMember.Password;
                 registerMember.NewMember.AuthCode= mailService.GetValidateCode();
                 memberService.Register(registerMember.NewMember);
