@@ -5,7 +5,6 @@ using System.Text;
 
 namespace ClassLibrary
 {
-
     public enum EncryptionType
     {
         MD5,
@@ -17,6 +16,7 @@ namespace ClassLibrary
     public class EncryptionHelper
     {
         public delegate string EncodingString(string source);
+
         public string Encryption(EncryptionType encryptionType, string source)
         {
             Dictionary<EncryptionType, EncodingString> dictionary = new Dictionary<EncryptionType, EncodingString>()
@@ -25,22 +25,21 @@ namespace ClassLibrary
                 { EncryptionType.SHA1,EncodingSHA1},
                 { EncryptionType.SHA384,EncodingSHA384},
                 { EncryptionType.SHA512,EncodingSHA512},
-
             };
             return dictionary[encryptionType].Invoke(source);
         }
-        /// <summary> 
-        /// MD5加密字符串 
-        /// </summary> 
-        /// <param name="source">原字串</param> 
-        /// <returns>加密後字串</returns> 
+
+        /// <summary>
+        /// MD5加密字符串
+        /// </summary>
+        /// <param name="source">原字串</param>
+        /// <returns>加密後字串</returns>
         public string EncodingMD5(string source)
         {
             MD5 md5 = MD5.Create();
             string resultMd5 = Convert.ToBase64String(md5.ComputeHash(Encoding.Default.GetBytes(source)));
             return resultMd5; ;
         }
-
 
         /// <summary>
         /// SHA1加密字串
@@ -53,6 +52,7 @@ namespace ClassLibrary
             string resultSha1 = Convert.ToBase64String(sha1.ComputeHash(Encoding.Default.GetBytes(source)));
             return resultSha1;
         }
+
         /// <summary>
         /// SHA384加密字串
         /// </summary>
@@ -64,6 +64,7 @@ namespace ClassLibrary
             string resultSha384 = Convert.ToBase64String(sha384.ComputeHash(Encoding.Default.GetBytes(source)));//把加密後的字串從Byte[]轉為字串
             return resultSha384;
         }
+
         /// <summary>
         /// SHA512加密字串
         /// </summary>
