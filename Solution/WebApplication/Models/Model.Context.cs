@@ -28,6 +28,6 @@ namespace WebApplication.Models
         public virtual DbSet<Album> Album { get; set; }
         public virtual DbSet<Article> Article { get; set; }
         public virtual DbSet<Member> Member { get; set; }
-        public virtual DbSet<MESSAGE> MESSAGE { get; set; }
+        public virtual DbSet<Message> MESSAGE { get; set; }
     }
 }

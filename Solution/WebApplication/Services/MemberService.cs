@@ -13,6 +13,7 @@ namespace WebApplication.Services
     public sealed class MemberService
     {
         private MyForumEntities db;
+
         public MemberService()
         {
             db = new MyForumEntities();
@@ -29,6 +30,7 @@ namespace WebApplication.Services
             db.Member.Add(newMember);
             db.SaveChanges();
         }
+
         /// <summary>
         /// 登入確定
         /// </summary>
@@ -62,10 +64,10 @@ namespace WebApplication.Services
             else
             {
                 msg = "此非會員,請註冊會員";
-
             }
             return isLogin;
         }
+
         /// <summary>
         /// 判斷密碼是否與資料庫密碼相同
         /// </summary>
@@ -117,6 +119,7 @@ namespace WebApplication.Services
             }
             return validateStr;
         }
+
         /// <summary>
         /// 確認註冊帳號是否有註冊過
         /// </summary>
@@ -127,6 +130,7 @@ namespace WebApplication.Services
             Member searchMember = db.Member.Find(account);
             return searchMember == null;
         }
+
         /// <summary>
         /// 變更會員密碼
         /// </summary>
@@ -143,7 +147,6 @@ namespace WebApplication.Services
                 member.Password = HashPassword(newPassword);
                 db.SaveChanges();
                 result = "密碼修改成功";
-
             }
             else
             {
@@ -151,6 +154,7 @@ namespace WebApplication.Services
             }
             return result;
         }
+
         /// <summary>
         /// 取得會員權限角色
         /// </summary>

@@ -20,5 +20,6 @@ namespace WebApplication.Models
         public string Account { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int Watch { get; set; }
+        public string Tag { get; set; }
     }
 }

@@ -11,24 +11,29 @@ namespace WebApplication.Services
     public class MailService
     {
         private MyForumEntities db;
+
         /// <summary>
         /// Gmail 帳號
         /// </summary>
         private readonly string gmailAccount = Properties.Settings.Default.GmailAccount;
+
         /// <summary>
         /// Gmail 密碼
         /// </summary>
         private readonly string gmailpassword = Properties.Settings.Default.GmailPassword;
+
         /// <summary>
         /// Gmail 網址
         /// </summary>
         private readonly string gmailAddress = Properties.Settings.Default.GmailAddress;
 
         private const int ValidateCodeLength = 10;
+
         public MailService()
         {
             db = new MyForumEntities();
         }
+
         public string GetValidateCode()
         {
             string validateCode = "";
@@ -49,6 +54,7 @@ namespace WebApplication.Services
             }
             return validateCode;
         }
+
         /// <summary>
         /// 將使用者資料填入範本中
         /// </summary>
@@ -62,11 +68,12 @@ namespace WebApplication.Services
             tempString = tempString.Replace("{{ValidateUrl}}", validateUrl);
             return tempString;
         }
+
         public void SendRegisterMail(string mailBody, string toEmail)
         {
             SmtpClient service = new SmtpClient("smtp.gmail.com");
             service.Port = 587;
-            service.Credentials = new NetworkCredential(gmailAccount,gmailpassword);
+            service.Credentials = new NetworkCredential(gmailAccount, gmailpassword);
             service.EnableSsl = true;
             MailMessage message = new MailMessage();
             message.From = new MailAddress(gmailAddress);

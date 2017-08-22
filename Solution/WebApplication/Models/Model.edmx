@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CMSDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CMSDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Album">
           <Key>
             <PropertyRef Name="Alb_Id" />
@@ -27,6 +27,7 @@
           <Property Name="Account" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="Watch" Type="int" Nullable="false" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -55,8 +56,7 @@
           <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CMSDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -82,6 +82,7 @@
           <Property Name="Account" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Watch" Type="Int32" Nullable="false" />
+          <Property Name="Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -94,7 +95,7 @@
           <Property Name="AuthCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="MESSAGE">
+        <EntityType Name="Message">
           <Key>
             <PropertyRef Name="M_Id" />
           </Key>
@@ -108,7 +109,7 @@
           <EntitySet Name="Album" EntityType="Self.Album" />
           <EntitySet Name="Article" EntityType="Self.Article" />
           <EntitySet Name="Member" EntityType="Self.Member" />
-          <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" />
+          <EntitySet Name="MESSAGE" EntityType="CMSDatabaseModel.Message" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -132,6 +133,7 @@
           <EntitySetMapping Name="Article">
             <EntityTypeMapping TypeName="CMSDatabaseModel.Article">
               <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
@@ -154,7 +156,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MESSAGE">
-            <EntityTypeMapping TypeName="CMSDatabaseModel.MESSAGE">
+            <EntityTypeMapping TypeName="CMSDatabaseModel.Message">
               <MappingFragment StoreEntitySet="MESSAGE">
                 <ScalarProperty Name="M_Id" ColumnName="M_Id" />
                 <ScalarProperty Name="A_Id" ColumnName="A_Id" />

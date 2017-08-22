@@ -216,7 +216,7 @@
     <Compile Include="Models\Member.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MESSAGE.cs">
+    <Compile Include="Models\Message.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MetadataModels\MemberMetadata.cs" />
@@ -241,9 +241,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Services\BlogService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\MemberService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BlogViewModel.cs" />
     <Compile Include="ViewModels\MemberChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\MemberLoginViewModel.cs" />
     <Compile Include="ViewModels\MemberRegisterViewModel.cs" />
@@ -260,6 +262,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\7093917-fr.jpg" />
     <Content Include="Models\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>

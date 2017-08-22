@@ -12,7 +12,7 @@ namespace WebApplication.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MESSAGE
+    public partial class Message
     {
         public int M_Id { get; set; }
         public int A_Id { get; set; }
