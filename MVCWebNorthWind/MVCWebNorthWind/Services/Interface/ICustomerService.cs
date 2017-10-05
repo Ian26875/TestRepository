@@ -13,6 +13,6 @@ namespace MVCWebNorthWind.Services.Interface
         void AddCustomer(Customers customers);
         void DeleteCustomer(Customers customers);
         void EditCustomer(Customers customers);
-        IEnumerable<Customers> GetAllCustomers();
+        IQueryable<Customers> GetAllCustomers();
     }
 }

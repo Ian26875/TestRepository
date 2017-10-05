@@ -25,9 +25,9 @@ namespace MVCWebNorthWind.Respositories
             return _UnitOfWork.Context.Set<T>().FirstOrDefault(func);
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _UnitOfWork.Context.Set<T>();
         }
 
         public void Insert(T entity)

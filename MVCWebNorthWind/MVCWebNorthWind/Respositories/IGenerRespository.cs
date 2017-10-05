@@ -8,7 +8,7 @@ namespace MVCWebNorthWind.Respositories
 {
     public interface IGenerRespository<T> where T:class,new()
     {
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         T FirstOrDefault(Func<T, bool> func);
         void Insert(T entity);
         void Update(T entity);
