@@ -209,7 +209,6 @@
     <Compile Include="Respositories\IGenerRespository.cs" />
     <Compile Include="Respositories\IUnitOfWork.cs" />
     <Compile Include="Respositories\UnitOfWork.cs" />
-    <Compile Include="Services\CustomerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -278,6 +277,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
