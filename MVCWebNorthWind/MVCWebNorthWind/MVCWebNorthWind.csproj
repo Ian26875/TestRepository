@@ -277,7 +277,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\" />
+    <Folder Include="Services\Interface\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
