@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 
 namespace MVCWebNorthWind.Tests.Services
 {
+    /// <summary>
+    /// Class CustomersServiceTest.
+    /// </summary>
     [TestClass]
     public class CustomersServiceTest
     {
@@ -28,8 +31,8 @@ namespace MVCWebNorthWind.Tests.Services
             string contactName = "";
             var expected = 0;
             //act
-            var customers=service.GetCustomersByCondition(companyName, contactName);
-            var actual = customers.Count();
+            var customers = service.GetCustomersByCondition(companyName, contactName);
+            var actual = customers.ToList().Count;
             //assert
             Assert.AreEqual(expected, actual);
         }
