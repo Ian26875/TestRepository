@@ -1,15 +1,12 @@
-﻿using LinqKit;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
 using MVCWebNorthWind.Services;
 using MVCWebNorthWind.Services.Interface;
 using MVCWebNorthWind.Tests.Mocket;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NSubstitute;
+using System.Collections.Generic;
 
 namespace MVCWebNorthWind.Tests.Services
 {
@@ -55,5 +52,26 @@ namespace MVCWebNorthWind.Tests.Services
             //assert
             Assert.AreEqual(expected, actual);
         }
+
+
+
+        [TestMethod]
+        [Owner("Ian")]
+        public void 測試方法_測試情境_預期結果()
+        {
+            //arrange        
+            IGenerRespository<Customers> generRespository = Substitute.For<IGenerRespository<Customers>>();
+          
+            ICustomerService service = new CustomerService(generRespository);
+            string companyName = "";
+            string contactName = "";
+            var expected = 0;
+            //act
+            var customers = service.GetCustomersByCondition(companyName, contactName);
+            var actual = customers.ToList().Count;
+            //assert
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
