@@ -37,7 +37,7 @@ namespace POCOCreater
             else
             {
                 MessageBox.Show(syntaxfileDirectory + " doesn't exist");
-            }         
+            }
         }
         private void InitializeComboBox()
         {
@@ -56,7 +56,6 @@ namespace POCOCreater
                         Connection=new SqlConnection()
                     },
                 };
-
                 ComboBoxConnType.DataSource = connections;
                 ComboBoxConnType.DisplayMember = "Name";
                 ComboBoxConnType.ValueMember = "Connection";
@@ -71,7 +70,15 @@ namespace POCOCreater
         {
             try
             {
-
+                IDbConnection connection = (ComboBoxConnType.SelectedItem as ConnectionTypeComboBoxItem).Connection;
+                connection.ConnectionString = TextBoxConnString.Text;
+                string sql = TextEditorControlQuerySQL.Text;
+                string className = TextBoxClassName.Text;
+                DataTable tableSchema = new DataTable();
+                string result = ConnectionHelper.PrintClass(connection, sql, className, ref tableSchema);
+                TextEditorControlResultCSharp.Text = result;
+                dataGridViewSchema.DataSource = tableSchema;
+                connection.Close();
             }
             catch (Exception ex)
             {

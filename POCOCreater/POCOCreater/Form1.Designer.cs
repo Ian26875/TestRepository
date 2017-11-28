@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.TextEditorControlQuerySQL = new ICSharpCode.TextEditor.TextEditorControl();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewSchema = new System.Windows.Forms.DataGridView();
             this.TextEditorControlResultCSharp = new ICSharpCode.TextEditor.TextEditorControl();
             this.ComboBoxConnType = new System.Windows.Forms.ComboBox();
             this.TextBoxConnString = new System.Windows.Forms.TextBox();
@@ -41,7 +41,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.TextBoxClassName = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchema)).BeginInit();
             this.SuspendLayout();
             // 
             // TextEditorControlQuerySQL
@@ -54,18 +54,18 @@
             this.TextEditorControlQuerySQL.TabIndex = 0;
             this.TextEditorControlQuerySQL.Text = "SELECT * FROM TABLE";
             // 
-            // dataGridView1
+            // dataGridViewSchema
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 364);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(610, 146);
-            this.dataGridView1.TabIndex = 1;
+            this.dataGridViewSchema.AllowUserToAddRows = false;
+            this.dataGridViewSchema.AllowUserToDeleteRows = false;
+            this.dataGridViewSchema.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSchema.Location = new System.Drawing.Point(8, 364);
+            this.dataGridViewSchema.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridViewSchema.Name = "dataGridViewSchema";
+            this.dataGridViewSchema.ReadOnly = true;
+            this.dataGridViewSchema.RowTemplate.Height = 27;
+            this.dataGridViewSchema.Size = new System.Drawing.Size(610, 146);
+            this.dataGridViewSchema.TabIndex = 1;
             // 
             // TextEditorControlResultCSharp
             // 
@@ -186,14 +186,14 @@
             this.Controls.Add(this.TextBoxConnString);
             this.Controls.Add(this.ComboBoxConnType);
             this.Controls.Add(this.TextEditorControlResultCSharp);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewSchema);
             this.Controls.Add(this.TextEditorControlQuerySQL);
             this.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create POCO CSharp Class";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSchema)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,7 +202,7 @@
         #endregion
 
         private ICSharpCode.TextEditor.TextEditorControl TextEditorControlQuerySQL;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewSchema;
         private ICSharpCode.TextEditor.TextEditorControl TextEditorControlResultCSharp;
         private System.Windows.Forms.ComboBox ComboBoxConnType;
         private System.Windows.Forms.TextBox TextBoxConnString;
