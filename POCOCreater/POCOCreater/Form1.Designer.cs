@@ -80,6 +80,8 @@
             // 
             // ComboBoxConnType
             // 
+            this.ComboBoxConnType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.ComboBoxConnType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ComboBoxConnType.FormattingEnabled = true;
             this.ComboBoxConnType.Location = new System.Drawing.Point(10, 29);
             this.ComboBoxConnType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

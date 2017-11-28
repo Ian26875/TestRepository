@@ -1,8 +1,11 @@
 ﻿using ICSharpCode.TextEditor.Document;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -18,6 +21,7 @@ namespace POCOCreater
         {
             InitializeComponent();
             ReadFileSyntax();
+            InitializeComboBox();
         }
         private void ReadFileSyntax()
         {
@@ -35,6 +39,34 @@ namespace POCOCreater
                 MessageBox.Show(syntaxfileDirectory + " doesn't exist");
             }         
         }
+        private void InitializeComboBox()
+        {
+            try
+            {
+                IList<ConnectionTypeComboBoxItem> connections = new List<ConnectionTypeComboBoxItem>
+                {
+                    new ConnectionTypeComboBoxItem
+                    {
+                        Name="Oracle OracleConnection",
+                        Connection=new OracleConnection()
+                    },
+                     new ConnectionTypeComboBoxItem
+                    {
+                        Name="Microsoft SqlConnection",
+                        Connection=new SqlConnection()
+                    },
+                };
+
+                ComboBoxConnType.DataSource = connections;
+                ComboBoxConnType.DisplayMember = "Name";
+                ComboBoxConnType.ValueMember = "Connection";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void ButtonAction_Click(object sender, EventArgs e)
         {
             try
