@@ -177,6 +177,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\FinancialHelperUnitTest.cs" />
     <Compile Include="CustomerComparer.cs" />
     <Compile Include="Mocket\MocketCustomersRespository.cs" />
     <Compile Include="NSubstitute\ICalculator.cs" />
