@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +82,95 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Syntax\ActionScript.xshd" />
+    <None Include="Syntax\Ada.xshd" />
+    <None Include="Syntax\ANTLR.xshd" />
+    <None Include="Syntax\Assembly.xshd" />
+    <None Include="Syntax\AutoHotkey.xshd" />
+    <None Include="Syntax\Batch.xshd" />
+    <None Include="Syntax\Boo.xshd" />
+    <None Include="Syntax\C#.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Syntax\C++.xshd" />
+    <None Include="Syntax\C.xshd" />
+    <None Include="Syntax\Ceylon.xshd" />
+    <None Include="Syntax\ChucK.xshd" />
+    <None Include="Syntax\Clojure.xshd" />
+    <None Include="Syntax\Cocoa.xshd" />
+    <None Include="Syntax\CoffeeScript.xshd" />
+    <None Include="Syntax\Cool.xshd" />
+    <None Include="Syntax\CSS.xshd" />
+    <None Include="Syntax\D.xshd" />
+    <None Include="Syntax\Dart.xshd" />
+    <None Include="Syntax\Delphi.xshd" />
+    <None Include="Syntax\Eiffel.xshd" />
+    <None Include="Syntax\Elixir.xshd" />
+    <None Include="Syntax\Erlang.xshd" />
+    <None Include="Syntax\F#.xshd" />
+    <None Include="Syntax\Falcon.xshd" />
+    <None Include="Syntax\Fantom.xshd" />
+    <None Include="Syntax\Fortran95.xshd" />
+    <None Include="Syntax\Go.xshd" />
+    <None Include="Syntax\Goovy.xshd" />
+    <None Include="Syntax\Gui4Cli.xshd" />
+    <None Include="Syntax\Haskell.xshd" />
+    <None Include="Syntax\Haxe.xshd" />
+    <None Include="Syntax\HTML.xshd" />
+    <None Include="Syntax\Icon.xshd" />
+    <None Include="Syntax\ILYC.xshd" />
+    <None Include="Syntax\INI.xshd" />
+    <None Include="Syntax\Io.xshd" />
+    <None Include="Syntax\Java.xshd" />
+    <None Include="Syntax\JavaScript.xshd" />
+    <None Include="Syntax\JSON.xshd" />
+    <None Include="Syntax\Julia.xshd" />
+    <None Include="Syntax\Just BASIC.xshd" />
+    <None Include="Syntax\KiXtart.xshd" />
+    <None Include="Syntax\Kotlin.xshd" />
+    <None Include="Syntax\Lean.xshd" />
+    <None Include="Syntax\Lisp.xshd" />
+    <None Include="Syntax\Lua.xshd" />
+    <None Include="Syntax\Nemerle.xshd" />
+    <None Include="Syntax\Nim.xshd" />
+    <None Include="Syntax\Objective-C.xshd" />
+    <None Include="Syntax\OCaml.xshd" />
+    <None Include="Syntax\ParaSail.xshd" />
+    <None Include="Syntax\Pascal.xshd" />
+    <None Include="Syntax\PHP.xshd" />
+    <None Include="Syntax\Pike.xshd" />
+    <None Include="Syntax\PowerShell.xshd" />
+    <None Include="Syntax\Prolog.xshd" />
+    <None Include="Syntax\PureScript.xshd" />
+    <None Include="Syntax\Python.xshd" />
+    <None Include="Syntax\R.xshd" />
+    <None Include="Syntax\Registry.xshd" />
+    <None Include="Syntax\Resource.xshd" />
+    <None Include="Syntax\Rexx.xshd" />
+    <None Include="Syntax\Rust.xshd" />
+    <None Include="Syntax\Scala.xshd" />
+    <None Include="Syntax\Scheme.xshd" />
+    <None Include="Syntax\Solidity.xshd" />
+    <None Include="Syntax\Spike.xshd" />
+    <None Include="Syntax\SQF.xshd" />
+    <None Include="Syntax\SQL.xshd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Syntax\Swift.xshd" />
+    <None Include="Syntax\TCL.xshd" />
+    <None Include="Syntax\Thrift.xshd" />
+    <None Include="Syntax\TypeScript.xshd" />
+    <None Include="Syntax\Vala.xshd" />
+    <None Include="Syntax\VBNET.xshd" />
+    <None Include="Syntax\VBScript.xshd" />
+    <None Include="Syntax\Verilog.xshd" />
+    <None Include="Syntax\VHDL.xshd" />
+    <None Include="Syntax\Volt.xshd" />
+    <None Include="Syntax\VS Solution.xshd" />
+    <None Include="Syntax\X10.xshd" />
+    <None Include="Syntax\XC.xshd" />
+    <None Include="Syntax\XML.xshd" />
+    <None Include="Syntax\Xtend.xshd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
