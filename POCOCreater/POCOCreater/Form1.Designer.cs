@@ -167,7 +167,7 @@
             // 
             this.TextBoxClassName.Location = new System.Drawing.Point(103, 761);
             this.TextBoxClassName.Name = "TextBoxClassName";
-            this.TextBoxClassName.Size = new System.Drawing.Size(266, 25);
+            this.TextBoxClassName.Size = new System.Drawing.Size(357, 25);
             this.TextBoxClassName.TabIndex = 12;
             // 
             // Form1
