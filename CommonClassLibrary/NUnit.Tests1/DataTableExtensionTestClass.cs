@@ -28,6 +28,20 @@ namespace NUnit.Tests1
         }
         [Test]
         [Category("DataTableExtension")]
+        public void ToList_將Columns為空DataTable轉型成List強型別物件_回傳空物件()
+        {
+            //arrange       
+            DataTable dataTable = new DataTable();
+            //act
+            List<Test> actual = dataTable.ToList<Test>();
+            //assert
+            Assert.That(actual, Is.Null);
+
+        }
+
+
+        [Test]
+        [Category("DataTableExtension")]
         public void ToList_將資料列為空DataTable轉型成List強型別物件_List資料為空但不能為空物件()
         {
             //arrange       

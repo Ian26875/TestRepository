@@ -25,6 +25,10 @@ namespace CommonClassLibrary.Extensions
         {
             try
             {
+                if (dataTable.Columns.Count == 0)
+                {
+                    return null;
+                }
                 Type objType = typeof(T);
                 ICollection<PropertyInfo> properties;
 
