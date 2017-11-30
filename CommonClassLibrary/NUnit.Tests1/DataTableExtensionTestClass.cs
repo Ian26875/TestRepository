@@ -20,52 +20,60 @@ namespace NUnit.Tests1
             public decimal DecimalColumn { get; set; }
             public long LongColumn { get; set; }
             public double DoubleColumn { get; set; }
+            public override bool Equals(object obj)
+            {
+                var input = obj as Test;
+                if (input == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    var result = StringColumn == input.StringColumn
+                        && IntColumn == input.IntColumn
+                         && DecimalColumn == input.DecimalColumn
+                           && LongColumn == input.LongColumn
+                             && DoubleColumn == input.DoubleColumn;
+                    return result;
+                }
+            }
         }
 
-        private DataTable dataTableTest;
-
-        [SetUp]     
-        public void DataTableTestInit()
+        [Test]
+        [Category("DataTableExtension")]
+        public void ToList_將DataTable轉型成List強型別物件_內容資料必須完全相同()
         {
-            dataTableTest = new DataTable();
+            //arrange
+            DataTable dataTableTest = new DataTable();
             dataTableTest.Columns.Add("StringColumn", typeof(string));
             dataTableTest.Columns.Add("IntColumn", typeof(int));
             dataTableTest.Columns.Add("DecimalColumn", typeof(decimal));
             dataTableTest.Columns.Add("LongColumn", typeof(long));
             dataTableTest.Columns.Add("DoubleColumn", typeof(double));
             DataRow dataRow = dataTableTest.NewRow();
-            dataRow.SetField("StringColumn", "TESTString");
-            dataRow.SetField("IntColumn", 100);
-            dataRow.SetField("DecimalColumn", 147852);
-            dataRow.SetField("LongColumn", 123456789);
-            dataRow.SetField("DoubleColumn", 0.123);
+            dataRow.SetField("StringColumn", "TEST");
+            dataRow.SetField<int>("IntColumn", 123);
+            dataRow.SetField<decimal>("DecimalColumn", 100);
+            dataRow.SetField<long>("LongColumn", 123456789);
+            dataRow.SetField<double>("DoubleColumn", 0.123);
             dataTableTest.Rows.Add(dataRow);
-        }
-
-
-        [Test]
-        [Category("DataTableExtension")]
-        [TestCaseSource("DataTableInit")]
-        public void ToList_將DataTable轉型成List強型別物件_內容資料必須完全相同()
-        {
-            //arrange
-
-            var test = new Test
+            List<Test> expected = new List<Test>() {  new Test
             {
-                StringColumn="",
-                IntColumn= 100,
-                DecimalColumn= 147852,
-                LongColumn= 123456789,
-                DoubleColumn= 0.123
-            };
-            List<Test> expected = new List<Test>() { test };
+                StringColumn = "TEST",
+                IntColumn = 123,
+                DecimalColumn = 100,
+                LongColumn = 123456789,
+                DoubleColumn = 0.123
+            }};
             //act
-            var actual = dataTableTest.ToList<Test>();
-            
-            //assert
-            Assert.That(actual, Is.EquivalentTo(expected));
-        }
+            List<Test> actual = dataTableTest.ToList<Test>();
 
-       
+            //assert
+            Assert.That(actual,Is.EquivalentTo(expected));
+   
+        }
     }
+
+
+
 }
