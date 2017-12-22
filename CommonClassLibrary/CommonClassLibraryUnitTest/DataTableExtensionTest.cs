@@ -1,23 +1,19 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Xml;
-using CommonClassLibrary.Extensions;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
+using CommonClassLibrary.Extensions;
 
-namespace NUnit.Tests1
+namespace CommonClassLibraryUnitTest
 {
-    [TestFixture]
-    public class DataTableExtensionTestClass
+    [TestClass]
+    public class DataTableExtensionTest
     {
-        private DataTable dataTableTest;
+        private DataTable dataTableTest { get; set; }
 
-        [SetUp]
-        public void Init()
+        [TestInitialize]
+        public void TestInitialize()
         {
             dataTableTest = new DataTable();
             dataTableTest.Columns.Add("StringColumn", typeof(string));
@@ -25,11 +21,11 @@ namespace NUnit.Tests1
             dataTableTest.Columns.Add("DecimalColumn", typeof(decimal));
             dataTableTest.Columns.Add("LongColumn", typeof(long));
             dataTableTest.Columns.Add("DoubleColumn", typeof(double));
-           
         }
 
-        [Test]
-        [Category("DataTableExtension")]
+        [TestMethod]
+        [TestCategory("DataTableExtension")]
+        [TestProperty("DataTableExtension", "ToList")]
         public void ToList_將Columns為空DataTable轉型成List強型別物件_回傳空物件()
         {
             //arrange       
@@ -40,8 +36,9 @@ namespace NUnit.Tests1
             actual.Should().BeNull();
         }
 
-        [Test]
-        [Category("DataTableExtension")]
+        [TestMethod]
+        [TestCategory("DataTableExtension")]
+        [TestProperty("DataTableExtension", "ToList")]
         public void ToList_將資料列為空DataTable轉型成List強型別物件_List資料為空但不能為空物件()
         {
             //arrange       
@@ -52,8 +49,9 @@ namespace NUnit.Tests1
             actual.ShouldBeEquivalentTo(expected);
         }
 
-        [Test]
-        [Category("DataTableExtension")]
+        [TestMethod]
+        [TestCategory("DataTableExtension")]
+        [TestProperty("DataTableExtension", "ToList")]
         public void ToList_將DataTable轉型成List強型別物件_內容資料必須完全相同()
         {
             //arrange
@@ -64,7 +62,6 @@ namespace NUnit.Tests1
             dataRow.SetField<long>("LongColumn", 123456789);
             dataRow.SetField<double>("DoubleColumn", 0.123);
             dataTableTest.Rows.Add(dataRow);
-
             List<Test> expected = new List<Test>() {  new Test
             {
                 StringColumn = "TEST",
@@ -75,7 +72,6 @@ namespace NUnit.Tests1
             }};
             //act
             List<Test> actual = dataTableTest.ToList<Test>();
-
             //assert        
             actual.ShouldBeEquivalentTo(expected);
         }
@@ -86,10 +82,7 @@ namespace NUnit.Tests1
             public int IntColumn { get; set; }
             public decimal DecimalColumn { get; set; }
             public long LongColumn { get; set; }
-            public double DoubleColumn { get; set; }           
+            public double DoubleColumn { get; set; }
         }
     }
-
-
-
 }

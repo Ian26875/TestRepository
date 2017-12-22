@@ -51,7 +51,6 @@ namespace CommonClassLibrary.Extensions
                     {
                         Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
                         Object safeValue = row[prop.Name] == DBNull.Value ? null : Convert.ChangeType(row[prop.Name], propType);
-
                         prop.SetValue(obj, safeValue, null);
 
                     }
