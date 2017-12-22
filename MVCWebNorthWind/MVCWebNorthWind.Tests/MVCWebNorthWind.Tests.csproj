@@ -186,7 +186,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerComparer.cs" />
     <Compile Include="NSubstitute\ICalculator.cs" />
     <Compile Include="NSubstitute\NSbustitute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
