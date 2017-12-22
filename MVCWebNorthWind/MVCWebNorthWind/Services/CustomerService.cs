@@ -11,18 +11,18 @@ namespace MVCWebNorthWind.Services
 {
     public class CustomerService : ICustomerService
     {
-        public IGenerRespository<Customers> CustomerRespository { get ; private set; }
+        public IGenerRespository<Customers> CustomerRespository { get; private set; }
 
         public CustomerService(IGenerRespository<Customers> generRespository)
         {
             CustomerRespository = generRespository;
         }
-      
+
         public void AddCustomer(Customers customers)
         {
             if (customers == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(customers));
             }
             CustomerRespository.Insert(customers);
         }
@@ -52,13 +52,16 @@ namespace MVCWebNorthWind.Services
 
         public IEnumerable<Customers> GetCustomersByCondition(string companyName, string contactName)
         {
-            var predicate = PredicateBuilder.New<Customers>(defaultExpression:false);
 
-            predicate = predicate.Or(c => c.ContactName.Contains(contactName));
+            var predicate = PredicateBuilder.New<Customers>(defaultExpression: false);
 
-            predicate = predicate.Or(c => c.CompanyName.Contains(companyName));
+            predicate = predicate.Or(c => c.CompanyName == companyName);
 
-            var searchResult= CustomerRespository.GetAll().Where(predicate);
+            predicate = predicate.Or(c => c.ContactName == contactName);
+
+            var source = CustomerRespository.GetAll();
+
+            var searchResult = source.Where(predicate);
 
             return searchResult;
         }

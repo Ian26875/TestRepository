@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVCWebNorthWind;
 using MVCWebNorthWind.Controllers;
+using FluentAssertions;
 
 namespace MVCWebNorthWind.Tests.Controllers
 {

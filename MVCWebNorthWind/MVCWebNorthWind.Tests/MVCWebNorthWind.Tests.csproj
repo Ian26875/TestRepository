@@ -190,12 +190,7 @@
     <Compile Include="NSubstitute\NSbustitute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="SpecFlow\SpecFlowFeatureTest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>SpecFlowFeatureTest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="SpecFlow\SpecFlowFeatureTestSteps.cs" />
+    <Compile Include="Services\CustomerServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config">
@@ -203,12 +198,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CsvTestData\Product_Data.csv" />
+    <Content Include="CsvTestData\Customer_Data.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
-    <None Include="SpecFlow\SpecFlowFeatureTest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>SpecFlowFeatureTest.feature.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVCWebNorthWind\MVCWebNorthWind.csproj">
@@ -218,7 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
-    <Folder Include="Services\" />
+    <Folder Include="SpecFlow\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
