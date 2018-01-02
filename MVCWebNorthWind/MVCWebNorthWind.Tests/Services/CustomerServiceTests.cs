@@ -114,12 +114,10 @@ namespace MVCWebNorthWind.Services.Tests.Services
             var sut = GetSystemUnderTest();
             Fixture fixture = new Fixture();
             var expected = 10;
-            fixture.Register(() => new Customers
-            {
-                Orders = new Orders[0],
-                CustomerDemographics = new CustomerDemographics[0]
-            });
-            var source = fixture.CreateMany<Customers>(count: 10).AsQueryable();
+
+            var source = fixture.Build<Customers>()
+                 .OmitAutoProperties()
+                 .CreateMany(count: 10).AsQueryable();
             _customerRepository.GetAll().ReturnsForAnyArgs(source);
             //act
             var actual = sut.GetAllCustomers();

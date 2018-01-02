@@ -18,7 +18,9 @@ namespace MVCWebNorthWind.Mappings
         private void MappingInitialize()
         {
             CreateMap<Customers, CustomerDTO>();
+            CreateMap<CustomerDTO, Customers>();
             CreateMap<Orders, OrderDTO>();
+            CreateMap<OrderDTO, Orders>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MVCWebNorthWind.Models;
+﻿using MVCWebNorthWind.DTOs;
+using MVCWebNorthWind.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace MVCWebNorthWind.Services.Interface
 {
     public interface IOrderService
     {
-        int CreateOrder(Orders orders);
-        void DeleteOrder(Orders orders);
-        void EditOrder(Orders orders);
-        IEnumerable<Orders> GetAllOrders();
+        int CreateOrder(OrderDTO orders);
+        void DeleteOrder(OrderDTO orders);
+        void EditOrder(OrderDTO orders);
+        IEnumerable<OrderDTO> GetAllOrders();
     }
 }

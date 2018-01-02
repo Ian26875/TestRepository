@@ -1,4 +1,6 @@
-﻿using MVCWebNorthWind.Models;
+﻿using AutoMapper;
+using MVCWebNorthWind.DTOs;
+using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories.Interface;
 using MVCWebNorthWind.Services.Interface;
 using System;
@@ -17,24 +19,34 @@ namespace MVCWebNorthWind.Services
             _ordersRespository = ordersRespository;
         }
 
-        public int CreateOrder(Orders orders)
+        public int CreateOrder(OrderDTO orders)
+        {
+            if (orders == null)
+            {
+                throw new ArgumentNullException(nameof(orders));
+            }
+            var entity = Mapper.Map<Orders>(orders);
+            var model=this._ordersRespository.Insert(entity);
+            var orderId = model.OrderID;
+            return orderId;
+        }
+
+        public void DeleteOrder(OrderDTO orders)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteOrder(Orders orders)
+        public void EditOrder(OrderDTO orders)
         {
             throw new NotImplementedException();
         }
 
-        public void EditOrder(Orders orders)
+        public IEnumerable<OrderDTO> GetAllOrders()
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Orders> GetAllOrders()
-        {
-            throw new NotImplementedException();
-        }
+
+
     }
 }
