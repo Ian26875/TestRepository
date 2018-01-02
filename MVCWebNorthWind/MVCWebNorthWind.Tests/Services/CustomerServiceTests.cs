@@ -19,7 +19,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
     [TestClass()]
     [DeploymentItem(@"CsvTestData\Customer_Data.csv")]
     public class CustomerServiceTests
-    {       
+    {
         private IGenerRespository<Customers> _CustomerRepository;
 
         /// <summary>
@@ -48,14 +48,12 @@ namespace MVCWebNorthWind.Services.Tests.Services
         private static List<Customers> GetDataSourceFromCsv()
         {
             var models = new List<Customers>();
-
             using (var sr = new StreamReader(@"Customer_Data.csv"))
             using (var reader = new CsvReader(sr))
             {
                 var records = reader.GetRecords<Customers>();
                 models.AddRange(records);
             }
-
             return models;
         }
 
@@ -115,15 +113,15 @@ namespace MVCWebNorthWind.Services.Tests.Services
             var sut = GetSystemUnderTest();
             Fixture fixture = new Fixture();
             var expected = 10;
-            fixture.Register(()=>new Customers
+            fixture.Register(() => new Customers
             {
-                Orders=new Orders[0],
-                CustomerDemographics= new CustomerDemographics[0]
+                Orders = new Orders[0],
+                CustomerDemographics = new CustomerDemographics[0]
             });
             var source = fixture.CreateMany<Customers>(count: 10).AsQueryable();
             _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
             //act
-            var actual= sut.GetAllCustomers();
+            var actual = sut.GetAllCustomers();
             //assert
             actual.Any().Should().BeTrue();
             actual.Should().HaveCount(expected);
@@ -137,7 +135,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
         {
             //arrange
             var sut = GetSystemUnderTest();
-          
+
             var source = GetDataSourceFromCsv().AsQueryable();
 
             _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
@@ -158,16 +156,16 @@ namespace MVCWebNorthWind.Services.Tests.Services
         [TestProperty("CustomerService", "GetAllCustomers")]
         public void GetAllCustomers_company為空字串_contactName為空字串_應取得零筆()
         {
-            //arrange
+            //arrange   
             var sut = GetSystemUnderTest();
 
             var company = "";
 
             var contactName = "";
 
-            var source = GetDataSourceFromCsv().AsQueryable();
-
             var expected = 0;
+
+            var source = GetDataSourceFromCsv().AsQueryable();
 
             _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
 
@@ -196,7 +194,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var source = GetDataSourceFromCsv().AsQueryable();
 
-            var expected=source.Where(x => x.CompanyName == "Bottom-Dollar Markets");
+            var expected = source.Where(x => x.CompanyName == "Bottom-Dollar Markets");
 
             _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
 
@@ -236,5 +234,49 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             actual.ShouldBeEquivalentTo(expected);
         }
+
+
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("CustomerService")]
+        [TestProperty("CustomerService", "GetCustomerById")]
+        public void GetCustomerById_id為ANATR_應取得customerId為ANATR()
+        {
+            //arrange
+            var sut = GetSystemUnderTest();
+
+            var id = "ANATR";
+
+
+            var source = GetDataSourceFromCsv();
+
+            var expected = source.Single(x => x.CustomerID == "ANATR");
+
+            _CustomerRepository.FirstOrDefault(x => x.CustomerID == id).
+                ReturnsForAnyArgs(expected);
+
+            //act
+            var actual = sut.GetCustomerById(id);
+
+            //assert
+            actual.Should().Be(expected);
+
+        }
+
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("CustomerService")]
+        [TestProperty("CustomerService", "GetCustomerById")]
+        public void GetCustomerById_id為null_應ThrowArgumentNullException()
+        {
+            //arrange
+            var sut = GetSystemUnderTest();
+            var id = "";
+            //act
+            Action action = () => sut.GetCustomerById(id);
+            //assert
+            action.ShouldThrow<ArgumentNullException>();
+        }
+
     }
 }

@@ -14,5 +14,6 @@ namespace MVCWebNorthWind.Services.Interface
         void DeleteCustomer(Customers customers);
         void EditCustomer(Customers customers);
         IQueryable<Customers> GetAllCustomers();
+        Customers GetCustomerById(string id);
     }
 }

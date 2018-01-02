@@ -6,16 +6,17 @@ using System.Web;
 using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
 using LinqKit;
+using Common.Extensions;
 
 namespace MVCWebNorthWind.Services
 {
     public class CustomerService : ICustomerService
     {
-        public IGenerRespository<Customers> CustomerRespository { get; private set; }
+        private IGenerRespository<Customers> _customerRespository;
 
         public CustomerService(IGenerRespository<Customers> generRespository)
         {
-            CustomerRespository = generRespository;
+            _customerRespository = generRespository;
         }
 
         public void AddCustomer(Customers customers)
@@ -24,7 +25,7 @@ namespace MVCWebNorthWind.Services
             {
                 throw new ArgumentNullException(nameof(customers));
             }
-            CustomerRespository.Insert(customers);
+            _customerRespository.Insert(customers);
         }
 
         public void DeleteCustomer(Customers customers)
@@ -33,7 +34,7 @@ namespace MVCWebNorthWind.Services
             {
                 throw new ArgumentNullException();
             }
-            CustomerRespository.Delete(customers);
+            _customerRespository.Delete(customers);
         }
 
         public void EditCustomer(Customers customers)
@@ -42,12 +43,12 @@ namespace MVCWebNorthWind.Services
             {
                 throw new ArgumentNullException();
             }
-            CustomerRespository.Update(customers);
+            _customerRespository.Update(customers);
         }
 
         public IQueryable<Customers> GetAllCustomers()
         {
-            return CustomerRespository.GetAll();
+            return _customerRespository.GetAll();
         }
 
         public IEnumerable<Customers> GetCustomersByCondition(string companyName, string contactName)
@@ -59,11 +60,21 @@ namespace MVCWebNorthWind.Services
 
             predicate = predicate.Or(c => c.ContactName == contactName);
 
-            var source = CustomerRespository.GetAll();
+            var source = _customerRespository.GetAll();
 
             var searchResult = source.Where(predicate);
 
             return searchResult;
+        }
+
+        public Customers GetCustomerById(string id)
+        {
+            if (id.IsNullOrEmpty())
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
+            var customers= _customerRespository.FirstOrDefault(x => x.CustomerID == id);
+            return customers;
         }
     }
 }

@@ -11,13 +11,13 @@ namespace MVCWebNorthWind.Respositories
     {
         public UnitOfWork():this(new NorthwindEntities())
         {
-
         }
 
         public UnitOfWork(DbContext dbContext)
         {
             Context = dbContext;
         }
+
         public DbContext Context { get; set; }
 
         public int SaveChanges()

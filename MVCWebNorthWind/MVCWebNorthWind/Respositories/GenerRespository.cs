@@ -25,6 +25,11 @@ namespace MVCWebNorthWind.Respositories
             return _UnitOfWork.Context.Set<T>().FirstOrDefault(func);
         }
 
+        public T SingleOrDefault(Func<T, bool> func)
+        {
+            return _UnitOfWork.Context.Set<T>().SingleOrDefault(func);
+        }
+
         public IQueryable<T> GetAll()
         {
             return _UnitOfWork.Context.Set<T>();

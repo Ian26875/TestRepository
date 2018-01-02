@@ -10,6 +10,7 @@ namespace MVCWebNorthWind.Respositories
     {
         IQueryable<T> GetAll();
         T FirstOrDefault(Func<T, bool> func);
+        T SingleOrDefault(Func<T, bool> func);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);

@@ -7,17 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MVCWebNorthWind.Models;
+using MVCWebNorthWind.Respositories;
+using MVCWebNorthWind.Services;
+using MVCWebNorthWind.Services.Interface;
 
 namespace MVCWebNorthWind.Controllers
 {
     public class CustomersController : Controller
     {
-        private NorthwindEntities db = new NorthwindEntities();
-
+        private readonly ICustomerService _customerService;
+        private readonly IUnitOfWork _unitOfWork;
+        public CustomersController(IUnitOfWork unitOfWork, ICustomerService customerService)
+        {
+            _unitOfWork = unitOfWork;
+            _customerService = customerService;
+        }
+       
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            var models = _customerService.GetAllCustomers().ToList();
+            return View(models);
         }
 
         // GET: Customers/Details/5
@@ -27,7 +37,7 @@ namespace MVCWebNorthWind.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
+            Customers customers = _customerService.GetCustomerById(id);
             if (customers == null)
             {
                 return HttpNotFound();
@@ -50,8 +60,8 @@ namespace MVCWebNorthWind.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customers);
-                db.SaveChanges();
+                _customerService.AddCustomer(customers);
+                _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +75,7 @@ namespace MVCWebNorthWind.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
+            Customers customers = _customerService.GetCustomerById(id);
             if (customers == null)
             {
                 return HttpNotFound();
@@ -82,8 +92,8 @@ namespace MVCWebNorthWind.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customers).State = EntityState.Modified;
-                db.SaveChanges();
+                _customerService.EditCustomer(customers);
+                _unitOfWork.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(customers);
@@ -96,7 +106,7 @@ namespace MVCWebNorthWind.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
+            Customers customers = _customerService.GetCustomerById(id);
             if (customers == null)
             {
                 return HttpNotFound();
@@ -109,9 +119,9 @@ namespace MVCWebNorthWind.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Customers customers = db.Customers.Find(id);
-            db.Customers.Remove(customers);
-            db.SaveChanges();
+            Customers customers = _customerService.GetCustomerById(id);
+            _customerService.DeleteCustomer(customers);
+            _unitOfWork.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -119,7 +129,7 @@ namespace MVCWebNorthWind.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }
