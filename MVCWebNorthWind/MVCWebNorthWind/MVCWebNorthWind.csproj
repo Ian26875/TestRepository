@@ -235,9 +235,6 @@
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IOrderService.cs" />
-    <Compile Include="ViewModels\LoanInformation.cs" />
-    <Compile Include="ViewModels\PaymentDetail.cs" />
-    <Compile Include="ViewModels\PaymentInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -306,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
