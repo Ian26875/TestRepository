@@ -11,7 +11,7 @@ namespace MVCWebNorthWind.Respositories.Interface
         IQueryable<T> GetAll();
         T FirstOrDefault(Func<T, bool> func);
         T SingleOrDefault(Func<T, bool> func);
-        void Insert(T entity);
+        T Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
     }

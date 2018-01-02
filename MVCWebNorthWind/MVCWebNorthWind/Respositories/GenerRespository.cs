@@ -36,9 +36,9 @@ namespace MVCWebNorthWind.Respositories
             return _UnitOfWork.Context.Set<T>();
         }
 
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
-            _UnitOfWork.Context.Set<T>().Add(entity);
+            return _UnitOfWork.Context.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
