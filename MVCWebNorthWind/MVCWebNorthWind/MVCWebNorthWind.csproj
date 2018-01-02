@@ -235,6 +235,7 @@
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
     <Compile Include="Services\Interface\IOrderService.cs" />
+    <Compile Include="Services\OrderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
