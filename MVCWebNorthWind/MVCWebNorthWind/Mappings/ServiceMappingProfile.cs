@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MVCWebNorthWind.DTOs;
 using MVCWebNorthWind.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace MVCWebNorthWind.Mappings
 
         private void MappingInitialize()
         {
-            CreateMap<Customers, Customers>();
+            CreateMap<Customers, CustomerDTO>();
+            CreateMap<Orders, OrderDTO>();
         }
     }
 }
