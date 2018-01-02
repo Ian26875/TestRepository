@@ -7,6 +7,7 @@ using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
 using LinqKit;
 using Common.Extensions;
+using MVCWebNorthWind.Respositories.Interface;
 
 namespace MVCWebNorthWind.Services
 {

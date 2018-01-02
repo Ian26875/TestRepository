@@ -1,4 +1,5 @@
 ﻿using MVCWebNorthWind.Models;
+using MVCWebNorthWind.Respositories.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,11 +9,7 @@ using System.Web;
 namespace MVCWebNorthWind.Respositories
 {
     public class UnitOfWork : IUnitOfWork
-    {
-        public UnitOfWork():this(new NorthwindEntities())
-        {
-        }
-
+    {       
         public UnitOfWork(DbContext dbContext)
         {
             Context = dbContext;

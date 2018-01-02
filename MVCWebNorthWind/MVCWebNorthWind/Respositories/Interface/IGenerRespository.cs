@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MVCWebNorthWind.Respositories
+namespace MVCWebNorthWind.Respositories.Interface
 {
     public interface IGenerRespository<T> where T:class,new()
     {

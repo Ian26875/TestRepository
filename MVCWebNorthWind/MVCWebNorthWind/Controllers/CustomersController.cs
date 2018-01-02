@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
+using MVCWebNorthWind.Respositories.Interface;
 using MVCWebNorthWind.Services;
 using MVCWebNorthWind.Services.Interface;
 

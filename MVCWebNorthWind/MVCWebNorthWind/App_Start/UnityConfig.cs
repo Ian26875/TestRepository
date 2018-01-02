@@ -1,8 +1,10 @@
 using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
+using MVCWebNorthWind.Respositories.Interface;
 using MVCWebNorthWind.Services;
 using MVCWebNorthWind.Services.Interface;
 using System;
+using System.Data.Entity;
 using System.Reflection;
 using System.Web.Configuration;
 using Unity;
@@ -53,16 +55,18 @@ namespace MVCWebNorthWind
 
             //unitOfwork
             UnitOfWorkRegister(container);
-            //repository
+            //repository layer
             RepositoryRegister(container);
-            //service
+            //service layer
             ServiceRegister(container);
         }
 
         private static void UnitOfWorkRegister(IUnityContainer container)
         {
+
+            var entity = new NorthwindEntities();
             container.RegisterType<IUnitOfWork, UnitOfWork>(
-                new InjectionConstructor());
+                new InjectionConstructor(entity));
         }
 
         private static void ServiceRegister(IUnityContainer container)
@@ -74,10 +78,7 @@ namespace MVCWebNorthWind
         {
             container.RegisterType<IGenerRespository<Customers>, 
                 GenerRespository<Customers>>(new PerRequestLifetimeManager());
-            //container.RegisterType(
-            //        typeof(IGenerRespository<>),
-            //        typeof(GenerRespository<>),
-            //        new InjectionConstructor(new PerRequestLifetimeManager()));
+         
         }
 
 

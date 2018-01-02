@@ -20,7 +20,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
     [DeploymentItem(@"CsvTestData\Customer_Data.csv")]
     public class CustomerServiceTests
     {
-        private IGenerRespository<Customers> _CustomerRepository;
+        private IGenerRespository<Customers> _customerRepository;
 
         /// <summary>
         /// Tests the initialize.
@@ -28,7 +28,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
         [TestInitialize]
         public void TestInitialize()
         {
-            _CustomerRepository = Substitute.For<IGenerRespository<Customers>>();
+            _customerRepository = Substitute.For<IGenerRespository<Customers>>();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
         /// <returns></returns>
         private ICustomerService GetSystemUnderTest()
         {
-            var sut = new CustomerService(this._CustomerRepository);
+            var sut = new CustomerService(this._customerRepository);
             return sut;
         }
 
@@ -119,7 +119,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
                 CustomerDemographics = new CustomerDemographics[0]
             });
             var source = fixture.CreateMany<Customers>(count: 10).AsQueryable();
-            _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
+            _customerRepository.GetAll().ReturnsForAnyArgs(source);
             //act
             var actual = sut.GetAllCustomers();
             //assert
@@ -138,7 +138,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var source = GetDataSourceFromCsv().AsQueryable();
 
-            _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
+            _customerRepository.GetAll().ReturnsForAnyArgs(source);
 
             var expected = 91;
             //act
@@ -167,7 +167,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var source = GetDataSourceFromCsv().AsQueryable();
 
-            _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
+            _customerRepository.GetAll().ReturnsForAnyArgs(source);
 
             //act
             var actual = sut.GetCustomersByCondition(company, contactName);
@@ -196,7 +196,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var expected = source.Where(x => x.CompanyName == "Bottom-Dollar Markets");
 
-            _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
+            _customerRepository.GetAll().ReturnsForAnyArgs(source);
 
             //act
             var actual = sut.GetCustomersByCondition(company, contactName);
@@ -224,7 +224,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var expected = source.Where(x => x.ContactName == "Hanna Moos");
 
-            _CustomerRepository.GetAll().ReturnsForAnyArgs(source);
+            _customerRepository.GetAll().ReturnsForAnyArgs(source);
 
             //act
             var actual = sut.GetCustomersByCondition(company, contactName);
@@ -252,7 +252,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
 
             var expected = source.Single(x => x.CustomerID == "ANATR");
 
-            _CustomerRepository.FirstOrDefault(x => x.CustomerID == id).
+            _customerRepository.FirstOrDefault(x => x.CustomerID == id).
                 ReturnsForAnyArgs(expected);
 
             //act

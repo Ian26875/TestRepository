@@ -229,11 +229,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respositories\GenerRespository.cs" />
-    <Compile Include="Respositories\IGenerRespository.cs" />
-    <Compile Include="Respositories\IUnitOfWork.cs" />
+    <Compile Include="Respositories\Interface\IGenerRespository.cs" />
+    <Compile Include="Respositories\Interface\IUnitOfWork.cs" />
     <Compile Include="Respositories\UnitOfWork.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\Interface\ICustomerService.cs" />
+    <Compile Include="Services\Interface\IOrderService.cs" />
     <Compile Include="ViewModels\LoanInformation.cs" />
     <Compile Include="ViewModels\PaymentDetail.cs" />
     <Compile Include="ViewModels\PaymentInfo.cs" />
@@ -305,7 +306,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
