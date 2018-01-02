@@ -244,6 +244,7 @@
     </Compile>
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Services\BlogService.cs" />
+    <Compile Include="Services\Interface\IBlogService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\MemberService.cs" />
     <Compile Include="Startup.cs" />
@@ -356,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Services\Interface\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

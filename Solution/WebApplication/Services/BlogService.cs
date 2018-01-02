@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WebApplication.Models;
+using WebApplication.Services.Interface;
 using WebApplication.ViewModels;
 
 namespace WebApplication.Services
 {
-    public class BlogService
+    public class BlogService : IBlogService
     {
         private MyForumEntities db;
 
