@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories.Interface;
@@ -182,11 +183,37 @@ namespace MVCWebNorthWind.Tests.Services
             //arrange
             var sut = this.GetSystemUnderTest();
             var fixture = new Fixture();
-            var input = fixture.Create<OrderDTO>();               
+            var input = fixture.Build<OrderDTO>().Create();      
             //act
             Action action = () => sut.EditOrder(input);
             //assert
             action.ShouldNotThrow();
         }
+
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("OrderService")]
+        [TestProperty("OrderService", "GetAll")]
+        public void GetAll_應取得所有Orders()
+        {
+            //arrange
+            var expected = 10;
+
+            var sut = this.GetSystemUnderTest();
+
+            var fixture = new Fixture();
+            var source = fixture.Build<Orders>().CreateMany(count:10);
+
+            this._ordersRepository.GetAll().Returns(source);
+
+            //act
+            var actual= sut.GetAllOrders();
+
+            //assert
+            actual.Any().Should().BeTrue();
+            actual.Should().HaveCount(expected);
+        }
+
+
     }
 }

@@ -78,7 +78,16 @@ namespace MVCWebNorthWind.Services
         /// <exception cref="NotImplementedException"></exception>
         public void EditOrder(OrderDTO orders)
         {
-            throw new NotImplementedException();
+            if (orders == null)
+            {
+                throw new ArgumentNullException(nameof(orders));
+            }
+            if (orders.OrderID == default(int))
+            {
+                throw new InvalidOperationException();
+            }
+            var entity = MapToOrders(orders);
+            this._ordersRespository.Update(entity);
         }
 
         /// <summary>
