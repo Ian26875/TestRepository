@@ -3,7 +3,6 @@ using MVCWebNorthWind.Models;
 using MVCWebNorthWind.Respositories;
 using MVCWebNorthWind.Services;
 using MVCWebNorthWind.Services.Interface;
-using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +12,7 @@ using FluentAssertions;
 using Ploeh.AutoFixture;
 using System.IO;
 using CsvHelper;
+using NSubstitute;
 using MVCWebNorthWind.Respositories.Interface;
 
 namespace MVCWebNorthWind.Services.Tests.Services
@@ -118,6 +118,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
             var source = fixture.Build<Customers>()
                  .OmitAutoProperties()
                  .CreateMany(count: 10).AsQueryable();
+
             _customerRepository.GetAll().ReturnsForAnyArgs(source);
             //act
             var actual = sut.GetAllCustomers();
@@ -277,5 +278,7 @@ namespace MVCWebNorthWind.Services.Tests.Services
             action.ShouldThrow<ArgumentNullException>();
         }
 
+
+       
     }
 }

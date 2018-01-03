@@ -30,7 +30,7 @@ namespace MVCWebNorthWind.Tests.Services
             (
                 cfg =>
                 {
-                  cfg.AddProfile<ServiceMappingProfile>();
+                    cfg.AddProfile<ServiceMappingProfile>();
                 }
             );
         }
@@ -55,7 +55,7 @@ namespace MVCWebNorthWind.Tests.Services
             var sut = this.GetSystemUnderTest();
             OrderDTO order = null;
             //act
-            Action action=()=>sut.CreateOrder(order);
+            Action action = () => sut.CreateOrder(order);
             //assert
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -64,26 +64,29 @@ namespace MVCWebNorthWind.Tests.Services
         [Owner("Ian")]
         [TestCategory("OrderService")]
         [TestProperty("OrderService", "CreateOrder")]
-        public void CreateOrder_新增訂單Order_應取得新增的OrderId()
+        public void CreateOrder_新增訂單Order_應取得OrderId為100()
         {
             //arrange
             var sut = this.GetSystemUnderTest();
-            Fixture fixture = new Fixture();
+            
             var expected = 100;
 
+            Fixture fixture = new Fixture();
             OrderDTO intput = fixture.Build<OrderDTO>()
                 .Without(x => x.OrderID)
                 .Create();
-            
+
             Orders source = fixture.Build<Orders>()
                 .OmitAutoProperties()
-                .With(x=>x.OrderID,100)
+                .With(x => x.OrderID, 100)
                 .Create();
 
             this._ordersRepository.Insert(null)
                 .ReturnsForAnyArgs(source);
+
             //act
             var actual = sut.CreateOrder(intput);
+
             //assert
             actual.Should().Be(expected);
         }
@@ -98,7 +101,7 @@ namespace MVCWebNorthWind.Tests.Services
             var sut = this.GetSystemUnderTest();
             OrderDTO input = null;
             //act
-            Action action=()=> sut.DeleteOrder(input);
+            Action action = () => sut.DeleteOrder(input);
             //assert
             action.ShouldThrow<ArgumentNullException>();
         }
@@ -113,7 +116,7 @@ namespace MVCWebNorthWind.Tests.Services
             var sut = this.GetSystemUnderTest();
             Fixture fixture = new Fixture();
             OrderDTO input = fixture.Build<OrderDTO>()
-                .Without(x=>x.OrderID)
+                .Without(x => x.OrderID)
                 .Create();
             //act
             Action action = () => sut.DeleteOrder(input);
@@ -121,6 +124,69 @@ namespace MVCWebNorthWind.Tests.Services
             action.ShouldThrow<InvalidOperationException>();
         }
 
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("OrderService")]
+        [TestProperty("OrderService", "DeleteOrder")]
+        public void DeleteOrder_輸入OrderDTO為產品資訊_應正常執行不拋例外處理()
+        {
+            //arrange
+            var sut = this.GetSystemUnderTest();
+            var fixture = new Fixture();
+            var input = fixture.Create<OrderDTO>();          
+            //act
+            Action action = () => sut.DeleteOrder(input);
+            //assert
+            action.ShouldNotThrow();
+        }
 
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("OrderService")]
+        [TestProperty("OrderService", "EditOrder")]
+        public void EditOrder_輸入OrderDTO為null_應ThrowArgumentNullException()
+        {
+            //arrange
+            var sut = this.GetSystemUnderTest();
+            OrderDTO input = null;
+            //act
+            Action action = () => sut.EditOrder(input);
+            //assert
+            action.ShouldThrow<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("OrderService")]
+        [TestProperty("OrderService", "EditOrder")]
+        public void EditOrder_輸入OrderDTO為OrderId為null_應ThrowArgumentNullException()
+        {
+            //arrange
+            var sut = this.GetSystemUnderTest();
+            Fixture fixture = new Fixture();
+            OrderDTO input = fixture.Build<OrderDTO>()
+                .Without(x => x.OrderID)
+                .Create();
+            //act
+            Action action = () => sut.EditOrder(input);
+            //assert
+            action.ShouldThrow<InvalidOperationException>();
+        }
+
+        [TestMethod]
+        [Owner("Ian")]
+        [TestCategory("OrderService")]
+        [TestProperty("OrderService", "EditOrder")]
+        public void EditOrder_輸入OrderDTO為產品資訊_應正常執行不拋例外處理()
+        {
+            //arrange
+            var sut = this.GetSystemUnderTest();
+            var fixture = new Fixture();
+            var input = fixture.Create<OrderDTO>();               
+            //act
+            Action action = () => sut.EditOrder(input);
+            //assert
+            action.ShouldNotThrow();
+        }
     }
 }
