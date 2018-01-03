@@ -97,7 +97,9 @@ namespace MVCWebNorthWind.Services
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable<OrderDTO> GetAllOrders()
         {
-            throw new NotImplementedException();
+            var source=this._ordersRespository.GetAll().AsEnumerable();
+            var models = Mapper.Map<IEnumerable<Orders>, IEnumerable<OrderDTO>>(source);
+            return models;
         }
 
         /// <summary>

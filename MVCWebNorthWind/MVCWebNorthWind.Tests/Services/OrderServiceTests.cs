@@ -202,7 +202,10 @@ namespace MVCWebNorthWind.Tests.Services
             var sut = this.GetSystemUnderTest();
 
             var fixture = new Fixture();
-            var source = fixture.Build<Orders>().CreateMany(count:10);
+            var source = fixture.Build<Orders>()
+                .OmitAutoProperties()
+                .CreateMany(count:10)
+                .AsQueryable();
 
             this._ordersRepository.GetAll().Returns(source);
 
