@@ -8,7 +8,7 @@ using System.Web;
 namespace MVCWebNorthWind.Respositories
 {
     /// <summary>
-    /// 
+    /// Respository Pattern
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="MVCWebNorthWind.Respositories.Interface.IGenerRespository{T}" />
