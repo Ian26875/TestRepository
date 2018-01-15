@@ -14,12 +14,12 @@ namespace MoneyTemplateMVC.Models.ViewModels
 
 
         [Display(Name = "日期")]
-        [DisplayFormat(DataFormatString="{0:yyyy/MM/dd}")]
+        [DisplayFormat(DataFormatString="{0:yyyy-MM-dd}")]
         public DateTime CreateTime { get; set; }
 
 
         [Display(Name = "金額")]
-        [DisplayFormat(DataFormatString = "{0:N}")]
+        [DisplayFormat(DataFormatString = "{0:N0}")]
         public decimal Amount { get; set; }
     }
 }
