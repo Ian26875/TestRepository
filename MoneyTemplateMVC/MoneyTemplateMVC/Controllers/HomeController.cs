@@ -44,7 +44,7 @@ namespace MoneyTemplateMVC.Controllers
                 var item = new MoneyViewModel
                 {
                     Amount = random.Next(0, 1500),
-                    Category = random.Next(0, 1) == 1 ? "收入" : "支出",
+                    Category = random.Next(0, 2) == 1 ? "支出":"收入",
                     CreateTime = new DateTime(2017, 12, random.Next(1, 31))
                 };
 
