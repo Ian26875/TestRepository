@@ -132,9 +132,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(7, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 17);
+            this.label3.Size = new System.Drawing.Size(104, 17);
             this.label3.TabIndex = 8;
-            this.label3.Text = "ConnectionType:";
+            this.label3.Text = "ProviderName:";
             // 
             // label4
             // 
